@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- view form -->
+        <record model="ir.ui.view" id="workers_attendance_form_view">
+            <field name="name">workers.attendance.form</field>
+            <field name="model">workers.attendance</field>
+            <field name="arch" type="xml">
+                <form string="Workers attendance Form">
+                    <sheet>
+                        <group>
+                            <field name="tag_id"/>
+                            <field name="name"/>
+                            <field name="create_date"/>
+                            <field name="rfid_status"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- tree view -->
+        <record model="ir.ui.view" id="workers_attendance_tree_view">
+            <field name="name">workers.attendance.tree</field>
+            <field name="model">workers.attendance</field>
+            <field name="arch" type="xml">
+                <tree string="Workers attendance List">
+                    <field name="tag_id"/>
+                    <field name="name"/>
+                    <field name="create_date"/>
+                    <field name="rfid_status"/>
+                </tree>
+            </field>
+        </record>
+        <!-- window action -->
+        <record model="ir.actions.act_window" id="workers_attendance_action">
+            <field name="name">Workers statistic</field>
+            <field name="res_model">workers.attendance</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p>
+                    Welcome to Workers statistic page.
+                </p>
+            </field>
+        </record>
+        <!-- menus -->
+        <menuitem name="Workers Analyser"
+                  id="main_workers_analyser_menu"
+                  web_icon="rfid_manager,static/img/workers_analyser_menu.ico"
+                  sequence="600"
+                  groups="base.group_user"/>
+        <menuitem id="open_worker_analysis_menu"
+                  name="Workers Analysis"
+                  parent="main_workers_analyser_menu"
+                  action="workers_attendance_action"/>
+
+    </data>
+</odoo>
